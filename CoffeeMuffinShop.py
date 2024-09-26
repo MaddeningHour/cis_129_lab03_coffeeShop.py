@@ -4,6 +4,8 @@ while x == 0:
     #Receives the inputs from users
     yCoffee = input("How many coffee(s) would you like: ")
     yMuffin = input("How many muffin(s) would you like: ")
+    yBagel = input("How many bagel(s) would you like: ")
+    yTea = input("How many tea(s) would you like: ")
 
 
     #By default we set valid to avoid future errors.
@@ -14,6 +16,8 @@ while x == 0:
     try:
             xCoffee = int(yCoffee)
             xMuffin = int(yMuffin)
+            xBagel = int(yBagel)
+            xTea = int(yTea)
             validInt = True
 
 
@@ -28,7 +32,7 @@ while x == 0:
 
 
     #Valid input checking.
-    elif validInt == True and xCoffee < 0 or xMuffin < 0:
+    elif validInt == True and xCoffee < 0 or xMuffin < 0 or xBagel < 0 or xTea < 0:
         print("Please enter a valid number for purchasing")
 
 
@@ -37,15 +41,18 @@ while x == 0:
         #Calculating charges
         cTotal = xCoffee * 5
         mTotal = xMuffin * 4
-        tax = (cTotal + mTotal) * 0.06
-        total = (cTotal + mTotal) * 1.06
+        bTotal = xBagel * 3
+        tTotal = xTea * 2
+        TAX_RATE = (cTotal + mTotal + bTotal + tTotal) * 0.06
+        total = cTotal + mTotal + bTotal + tTotal + TAX_RATE
 
 
         #Formatting/Printing our values in a f-string.
         receipt = ("***************\nMy Coffee and Muffin shop reciept:"
         +"\n {} Coffee(s) at $5 each:${} \n {} Muffin(s) at $4 each:${}" 
-        +"\n 6% Tax at :${} \n Total:${}").format(xCoffee, cTotal, xMuffin, mTotal,tax, total)
+        +"\n {} Bagel(s) at $3 each: ${}\n {} Tea(s) at $2 each:{}\n 6% Tax at :${} \n Total:${}\n").format(xCoffee, cTotal, xMuffin, mTotal, xBagel, bTotal, xTea,tTotal, TAX_RATE, total)
         print(receipt)
+        print("\nThank you for shopping with us!!!\n***************")
         
         
         #If all checks are valid then we set x to 1 which breaks the looping mechanism.
